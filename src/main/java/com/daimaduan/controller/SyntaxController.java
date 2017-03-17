@@ -20,6 +20,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @RequestMapping(path = "/api/v1/syntax")
 public class SyntaxController {
     private final SyntaxRepository syntaxRepository;
+    private final SyntaxResourceAssembler assembler = new SyntaxResourceAssembler();
 
     @Autowired
     public SyntaxController(SyntaxRepository syntaxRepository) {
@@ -27,19 +28,17 @@ public class SyntaxController {
     }
 
     @RequestMapping(path = "", method= RequestMethod.GET)
-    public HttpEntity<Resources<SyntaxResource>> getAllSyntax() {
-        SyntaxResourceAssembler assembler = new SyntaxResourceAssembler();
-
-        Resources<SyntaxResource> wrapped = new Resources<>(assembler.toResources(syntaxRepository.findAll()), linkTo(SyntaxController.class).withSelfRel());
+    public HttpEntity<Resources<SyntaxResource>> list() {
+        Resources<SyntaxResource> wrapped = new Resources<>(assembler.toResources(syntaxRepository.findAll()),
+                linkTo(SyntaxController.class).withSelfRel());
 
         return new ResponseEntity<>(wrapped, HttpStatus.OK);
     }
 
     @RequestMapping(path="/{key}", method= RequestMethod.GET)
-    public HttpEntity<Resource<SyntaxResource>> getSyntax(@PathVariable String key) {
-        SyntaxResourceAssembler assembler = new SyntaxResourceAssembler();
-
-        Resource<SyntaxResource> wrapped = new Resource<>(assembler.toResource(syntaxRepository.findByKey(key)), linkTo(SyntaxController.class).withSelfRel());
+    public HttpEntity<Resource<SyntaxResource>> get(@PathVariable String key) {
+        Resource<SyntaxResource> wrapped = new Resource<>(assembler.toResource(syntaxRepository.findByKey(key)),
+                linkTo(SyntaxController.class).withSelfRel());
         return new ResponseEntity<>(wrapped, HttpStatus.OK);
     }
 }

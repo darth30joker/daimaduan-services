@@ -17,7 +17,7 @@ public class SyntaxResourceAssembler extends ResourceAssemblerSupport<Syntax, Sy
         SyntaxResource syntaxResource = new SyntaxResource();
         syntaxResource.setKey(entity.key);
         syntaxResource.setName(entity.name);
-        syntaxResource.add(linkTo(methodOn(SyntaxController.class).getSyntax(entity.key)).withSelfRel());
+        syntaxResource.add(linkTo(methodOn(SyntaxController.class).get(entity.key)).withSelfRel());
         return syntaxResource;
     }
 }

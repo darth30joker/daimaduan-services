@@ -4,6 +4,7 @@ import org.springframework.hateoas.ResourceSupport;
 
 public class SyntaxResource extends ResourceSupport {
     private String key;
+
     private String name;
 
     public void setKey(String key) {
