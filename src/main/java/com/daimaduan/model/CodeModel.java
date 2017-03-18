@@ -1,13 +1,14 @@
-package com.daimaduan.domain;
+package com.daimaduan.model;
 
-public class Code {
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class CodeModel {
     private String title;
 
-    private Syntax syntax;
+    private String syntax;
 
+    @NotEmpty
     private String content;
-
-    public Code() {}
 
     public String getTitle() {
         return title;
@@ -17,11 +18,11 @@ public class Code {
         this.title = title;
     }
 
-    public Syntax getSyntax() {
+    public String getSyntax() {
         return syntax;
     }
 
-    public void setSyntax(Syntax syntax) {
+    public void setSyntax(String syntax) {
         this.syntax = syntax;
     }
 

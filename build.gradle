@@ -36,6 +36,8 @@ dependencies {
 	compile('org.springframework.session:spring-session')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
+	compile('org.modelmapper:modelmapper:0.7.5')
+
 	runtime('org.springframework.boot:spring-boot-devtools')
 
 	providedRuntime('org.springframework.boot:spring-boot-starter-jetty')

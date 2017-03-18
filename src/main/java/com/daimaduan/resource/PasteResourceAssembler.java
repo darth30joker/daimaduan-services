@@ -15,10 +15,10 @@ public class PasteResourceAssembler extends ResourceAssemblerSupport<Paste, Past
     @Override
     public PasteResource toResource(Paste entity) {
         PasteResource pasteResource = new PasteResource();
-        pasteResource.setHashId(entity.hashId);
-        pasteResource.setTitle(entity.title);
-        pasteResource.setCodes(entity.codes);
-        pasteResource.add(linkTo(methodOn(PasteController.class).get(entity.hashId)).withSelfRel());
+        pasteResource.setHashId(entity.getHashId());
+        pasteResource.setTitle(entity.getTitle());
+        pasteResource.setCodes(entity.getCodes());
+        pasteResource.add(linkTo(methodOn(PasteController.class).get(entity.getHashId())).withSelfRel());
         return pasteResource;
     }
 }
